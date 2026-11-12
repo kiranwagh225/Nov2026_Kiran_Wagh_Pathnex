@@ -1,0 +1,4 @@
+3 hour - attended the morning sessions & learned the AWS services like networking, storage & DNS.
+1 hour - practices on AWS service on aws cloud
+2 hour - gone through the theory part for todays learned aws services
+half hour - practices for communication
