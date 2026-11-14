@@ -1,0 +1,7 @@
+3.5 hour - attended the morning session & learned the how to buld the EKS cluster with terraform & also learned the terrafom related the troubleshoot
+4 hour - watched the Kubernetes Upgradation video & learned the how to upgrade the cluster
+1 hour - completd the my git push tasks & make introduction video
+2 hour - gone through the theory part on todays learned topics
+half hour - attended the evening session
+7 hour - working for organisation
+
