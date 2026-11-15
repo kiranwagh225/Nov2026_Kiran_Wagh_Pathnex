@@ -189,7 +189,7 @@ pipeline {
     }
 }
 
-## GitLab CI — Scheduled Pipeline
+## GitLab CI — Scheduled Pipeline.
 You will learn how to schedule GitLab CI pipelines via cron.
 
 stages:
