@@ -1,0 +1,4 @@
+3.5 hour - attended the morning session & learned the Kubernetes, its compenents & its architecture
+1 hour - learned the therory part of kubernetes
+1 hour - for english communication practice
+half four  - attended the eveving class & give overview of kubernetes
