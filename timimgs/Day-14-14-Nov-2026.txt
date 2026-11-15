@@ -1,0 +1,5 @@
+3.5 hour - attended attended the morning session & learned practical of PV, PVC, statefulset also covered the theoy part for Ingress, cronjobs, jobs, affinity, anti affinity
+1 hour - completd the my git push tasks & make introduction video
+2 hour - done the practical practices on my own AWS account
+3 hour - gone through the theory part on todays learned topics
+half hour - attended the evening session
