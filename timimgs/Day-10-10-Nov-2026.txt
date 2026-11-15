@@ -1,0 +1,4 @@
+3 hour - attend the morning session & learned the Docker & its all concept
+2 hour - practice for docker how to create the container & image
+1 hour - gone through it theory part
+half hour - attenede the evening session
