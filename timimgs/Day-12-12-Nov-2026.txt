@@ -1,0 +1,6 @@
+3 hour - attaend the moring sessiob & learned the k8s request flow, Nmaespace, Service, How to set up EKS on AWS Cloud
+1 hour - practice to set up EKS on AWS Cloud
+2 hour - watch the k8s upgradation video
+half hour - for prepare introduction videoo & english communication
+1 hour - gone through theory part for the todays topics covered in morning session
+half hour - attend the evening class & given morning session overview  
