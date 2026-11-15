@@ -1,6 +1,0 @@
-3 hour - attended the morning session & learned the Cloud v/s on-premises, some AWS Servcies
-1 hour - gone through the theory part 
-half hour - for english communication practices
-half hour - attended the evening sessions
-1 hour - gone through the AWS console overview for aws services
-
