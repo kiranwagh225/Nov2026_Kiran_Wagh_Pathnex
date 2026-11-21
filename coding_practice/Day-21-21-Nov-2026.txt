@@ -1,0 +1,200 @@
+# Day 21 - SPEED TYPING (LEVEL 2)
+
+We rewrite the all four from scratch:
+
+1. Ansible
+
+---
+- name: Install Nginx Application
+  become: yes
+  hosts: all
+
+  tasks:
+    - name: Install nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start the Nginx Service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+2. Terraform
+
+resource "aws_vpc" "PathnexVPC" {
+    cidr_block = "10.10.0.0/16"
+
+    tags = {
+        Name = "Pathnex-VPC"
+    }
+}
+
+#Create the Subnet
+resource "aws_subnet" "PathnexSubnet" {
+    vpc_id                  = aws_vpc.PathnexVPC.id
+    cidr_block              = "10.10.1.0/24"
+    map_public_ip_on_launch = true
+
+    tags = {
+        Name = "Pathnex-Subnet"
+    }
+}
+
+#Create the Internet Gateway
+resource "aws_internet_gateway" "PathnexIGW" {
+    vpc_id = aws_vpc.PathnexVPC.id
+
+    tags = {
+        Name = "Pathnex-IGW"
+    }
+}
+
+#Create Route table
+resource "aws_route_table" "PathnexRT" {
+    vpc_id = aws_vpc.PathnexVPC.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.PathnexIGW.id
+    }
+
+    tags = {
+        Name = "Pathnex-RouteTable"
+    }
+}
+
+#Create Secuirty Group
+resource "aws_security_group" "PathnexSG" {
+    name   = "Pathnex-SG"
+    vpc_id = aws_vpc.PathnexVPC.id
+
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port   = 0 
+        to_port     = 0
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = {
+        Name = "Pathnex-SG"
+    } 
+}
+
+#Create the EC2 instance
+resource "aws_instance" "PathnexEC2 {
+    ami                         = "ami-12334bfbfefeufi"  
+    instance_type               = "c5.xlarge"
+    subnet_id                   = aws_subnet.PathnexSubnet.id
+    vpc_security_group_ids      = [aws_security_group.PathnexSG.id]
+    associate_public_ip_address = true
+
+    tags = {
+        Name = "Pathnex-EC2"
+        Owner = "PathnexStudent"
+    }
+}
+
+
+3. Kubernetes (Deployment)
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Pathnex-Deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports: 
+            - containerPort: 80
+
+
+4. Shell Script - (date, uptime, disk usage)
+
+#!/bin/bash
+
+echo "Display the date"
+date
+
+echo "Shows the Uptime"
+uptime
+
+echo "Current Disk Usage"
+df -hT
+
+
+# Multi-Environment Pipeline
+
+## Jenkins Pipeline - Deploy to Multiple Environments
+
+pipeline {
+    agent any
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+    }
+    stages {
+       stage('Deploy to Dev') {
+          steps {
+             sh 'echo "Deploying $INSTITUTE_NAME to Dev environment"'
+          }
+       }
+       stage('Deploy to Staging') {
+  	  steps {
+              input message: "Approve Staging Deployment?"
+              sh 'echo "Deploying $INSTITUTE_NAME to Staging environment"'
+          }
+       }
+       stage('Deploy to Prod') {
+	  steps {
+	      input message: "Approve Prod Deployment?"
+              sh 'echo "Deploying $INTITUTE_NAME to Prod environment"'
+	  }
+       }
+    } 
+}
+
+## Gitlab CI - Multi Environment
+
+stages:
+  - deploy
+
+variables:
+  INSTITUTE_NAME: "Pathnex"
+
+deploy-dev:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying $INSTITUTE_NAME to Dev environment"
+
+deploy-staging:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying $INSTITUTE_NAME to Staging environment" 
+
+deploy-prod:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying $INSTITUTE_NAME to Prod environment"
+  
+
