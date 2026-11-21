@@ -1,0 +1,5 @@
+3 hour - attended the morning session & learned new topics Monitoring, New Relic how to set up EKS cluster for monitoring platform
+3 hour - gone through the theory part and again watch today morning videos
+2 hour - done practical but facing some issue still i am resolving
+half hour - attended the evening class
+
